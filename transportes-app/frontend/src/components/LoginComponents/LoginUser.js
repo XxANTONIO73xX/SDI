@@ -7,16 +7,27 @@ export default class LoginUser extends Component {
         nickname: '',
         password: '',
     }
+    componentDidMount() {
+        // Verificar si ya está logueado
+        const isLogged = localStorage.getItem('isLogged') === 'true';
+        if (isLogged) {
+          this.props.navigate('/contactos');
+        }
+      }
     getLogin = async e => {
         e.preventDefault();
+        const { setLogged, navigate } = this.props;
         const res = await axios.post(process.env.REACT_APP_HOSTNAME+'/users/login', {
             nickname: this.state.nickname,
             password: this.state.password
         });
         if(res.data.goIn === 1){
             alert("inicio exitoso")
-            localStorage.setItem("session", true);
-            window.location.href = "/centrales"
+            setLogged(true); // Cambia isLogged a true en App
+            localStorage.setItem("isLogged", true)
+            localStorage.setItem("user_name", res.data.user.name)
+            localStorage.setItem("user_id", res.data.user._id)
+            navigate('/contactos'); // Navega a /contactos
         }else{
             alert("Usuario o contraseña incorrectos")
         }
@@ -36,8 +47,7 @@ export default class LoginUser extends Component {
         return (
             <div>
                 <div className="title-login">
-                    <h1>Transportes App</h1>
-                    <img src='/transporteEstadosImg/bien.png' alt="logo"/>
+                    <h1>Contactos App</h1>
                 </div>
                 <form className="container-login" onSubmit={this.getLogin}>
                     <div >

@@ -5,7 +5,7 @@ const swaggerUi = require("swagger-ui-express");
 const options = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "API Transportes Documentations", version: "1.0.0" },
+    info: { title: "API Libreta de Contactos", version: "1.0.0" },
   },
   apis: ["../backend/routes/users.js", "../backend/routes/contacto.js", "../backend/routes/categoria.js"],
 };

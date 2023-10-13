@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {Route, Routes } from 'react-router-dom';
+import {Route, Routes, useNavigate } from 'react-router-dom';
 import LoginUser from './components/LoginComponents/LoginUser';
-import Navigator from './components/MainComponents/Navitagor';
-import Transportes from './components/MainComponents/Transportes';
-import Centrales from './components/MainComponents/Centrales';
 import RegisterUser from './components/LoginComponents/RegisterUser';
-import { Wrapper } from "@googlemaps/react-wrapper";
+import Contactos from './components/MainComponents/Contactos';
+import Categorias from './components/MainComponents/Categorias';
+import { ProtectedRoutes } from './components/ProtectedRoutes';
+import Navigator from './components/MainComponents/Navigator';
 function App() {
+  const [isLogged, setLogged] = useState(false)
+  const navigate = useNavigate();
   return (
     <div> 
       <Routes>
-        <Route index element={<div><LoginUser/></div>}/>
+        <Route index element={<div><LoginUser isLogged={isLogged} setLogged={setLogged} navigate={navigate}/></div>}/>
         <Route path='/resgistro' element={<div><RegisterUser/></div>}/>
-        <Route element={<div><Navigator/></div>}>
-          <Route path='/transportes' element={<div><Transportes/></div>}/>
-          <Wrapper apiKey={process.env.REACT_APP_API_KEY}>
-            <Route path='/centrales' element={<div><Centrales/></div>}/>
-          </Wrapper>
+        <Route element={<ProtectedRoutes isLogged={isLogged}/>}>
+          <Route element={<Navigator isLogged={isLogged} setLogged={setLogged} navigate={navigate}/>}>
+            <Route path='/contactos' element={<div><Contactos/></div>}/>
+            <Route path='/categorias' element={<div><Categorias/></div>}/> 
+          </Route>
         </Route>
       </Routes>  
     </div>

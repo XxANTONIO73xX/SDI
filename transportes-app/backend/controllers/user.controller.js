@@ -21,7 +21,14 @@ usersCtrl.login = async (req, res) =>{
     user.comparePassword(password, (error, match)=>{
         if(!match){
             return res.status(200).send({ message: "The password is invalid", goIn: 0 });
-        }else{res.send({ message: "The username and password combination is correct!", goIn: 1 });}
+        }else{
+            userespond = {
+                _id: user._id,
+                name: user.name,
+                nickname: user.nickname
+            }
+            res.send({ message: "The username and password combination is correct!", goIn: 1, user:userespond});
+        }
     });
 }
 
