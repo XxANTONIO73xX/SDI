@@ -68,6 +68,9 @@ const {createUser, login} = require('../controllers/user.controller')
  *         name:
  *           type: String
  *           description: El nombre del Usuario
+ *         telefono:
+ *           type: String
+ *           description: El telefono del Usuario
  *         nickname:
  *           type: String
  *           description: El nombre unico del Usuario
@@ -77,6 +80,7 @@ const {createUser, login} = require('../controllers/user.controller')
  *       example:
  *         id: d5fEasz
  *         name: Jesus Navarrete
+ *         telefono: "+526221018849"
  *         nickname: Antonino300
  *         password: $2a$10$k5iTIlRMuWlbbo3uoF7pIeHZxmncQjuu6k9e7F6jmsTqzzRb3zU7K
  */

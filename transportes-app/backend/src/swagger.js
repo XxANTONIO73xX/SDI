@@ -7,7 +7,7 @@ const options = {
     openapi: "3.0.0",
     info: { title: "API Transportes Documentations", version: "1.0.0" },
   },
-  apis: ["../backend/routes/users.js", "../backend/routes/central.js", "../backend/routes/transporte.js"],
+  apis: ["../backend/routes/users.js", "../backend/routes/contacto.js", "../backend/routes/categoria.js"],
 };
 
 // Docs in JSON format

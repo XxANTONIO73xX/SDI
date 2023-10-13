@@ -7,7 +7,7 @@ app.set('port', process.env.PORT || 4000);
 app.use(cors());
 app.use(express.json());
 // routes
-app.use('/api/centrales', require("../routes/central"));
-app.use('/api/transportes', require("../routes/transporte"));
+app.use('/api/contactos', require("../routes/contacto"));
+app.use('/api/categorias', require("../routes/categoria"));
 app.use('/api/users', require("../routes/users"));
 module.exports = app;
