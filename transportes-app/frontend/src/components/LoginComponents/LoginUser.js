@@ -9,7 +9,7 @@ export default class LoginUser extends Component {
     }
     componentDidMount() {
         // Verificar si ya está logueado
-        const isLogged = localStorage.getItem('isLogged') === 'true';
+        const isLogged = localStorage.getItem('isLogged');
         if (isLogged) {
           this.props.navigate('/contactos');
         }

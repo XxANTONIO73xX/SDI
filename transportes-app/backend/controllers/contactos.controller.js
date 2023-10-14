@@ -7,10 +7,11 @@ contactoCtrl.getContactos = async (req, res) => {
 }
 
 contactoCtrl.createContacto = async (req, res) => {
-    const {nombre, apellidos, categoria, idUsuario} = req.body;
+    const {nombre, apellidos, telefono, categoria, idUsuario} = req.body;
     const newContacto = new Contacto({
         nombre: nombre,
         apellidos: apellidos,
+        telefono: telefono,
         categoria: categoria,
         idUsuario: idUsuario
     });
@@ -24,9 +25,12 @@ contactoCtrl.getContacto = async (req, res) =>{
 }
 
 contactoCtrl.updateContacto = async (req, res) =>{
-    const {nombre, apellidos, categoria} = req.body;
+    const {nombre, apellidos, telefono, categoria} = req.body;
     await Contacto.findOneAndUpdate({_id: req.params.id}, {
-        nombre, apellidos, categoria
+        nombre: nombre,
+        apellidos: apellidos,
+        telefono: telefono,
+        categoria: categoria,
     });
     res.json({message: 'Contacto Updated'})
 }

@@ -16,13 +16,13 @@ function App() {
       <Routes>
         <Route index element={<div><LoginUser isLogged={isLogged} setLogged={setLogged} navigate={navigate}/></div>}/>
         <Route path='/resgistro' element={<div><RegisterUser/></div>}/>
-        <Route element={<ProtectedRoutes isLogged={isLogged}/>}>
-          <Route element={<Navigator isLogged={isLogged} setLogged={setLogged} navigate={navigate}/>}>
+        <Route element={<ProtectedRoutes isLogged={localStorage.getItem('isLogged')}/>}>
+          <Route element={<Navigator setLogged={setLogged} navigate={navigate}/>}>
             <Route path='/contactos' element={<div><Contactos/></div>}/>
             <Route path='/categorias' element={<div><Categorias/></div>}/> 
           </Route>
         </Route>
-      </Routes>  
+      </Routes>
     </div>
   );
 }
