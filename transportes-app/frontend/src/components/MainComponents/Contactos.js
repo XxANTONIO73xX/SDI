@@ -29,7 +29,7 @@ export default class Contactos extends Component {
                         <tr>
                             <th>Nombre</th>
                             <th>Apellidos</th>
-                            <th>Telefono</th>
+                            <th>Email</th>
                             <th>Categoria</th>
                             <th>Acciones</th>
                         </tr>
@@ -40,9 +40,9 @@ export default class Contactos extends Component {
                                 <tr key={contacto._id}>
                                     <td>{contacto.nombre}</td>
                                     <td>{contacto.apellidos}</td>
-                                    <td>{contacto.telefono}</td>
+                                    <td>{contacto.email}</td>
                                     <td>{contacto.categoria}</td>
-                                    <td><SendMessage/> <CreateContact contacto={contacto}/>
+                                    <td><SendMessage contacto={contacto}/> <CreateContact contacto={contacto}/>
                                     <Button onClick={() => this.eliminarContacto(contacto._id)} className="btn-danger">Eliminar</Button>
                                     </td>
                                 </tr>

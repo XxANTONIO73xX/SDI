@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {getContactos, createContacto, getContacto, updateContacto, deleteContacto} = require('../controllers/contactos.controller');
+const {getContactos, createContacto, getContacto, updateContacto, deleteContacto, sendMessage} = require('../controllers/contactos.controller');
 /**
  * @swagger
  * tags:
@@ -25,7 +25,23 @@ const {getContactos, createContacto, getContacto, updateContacto, deleteContacto
  *               example: {message: 'Contacto Saved'}
  *       500:
  *         description: Some server error
- * 
+ * /api/contactos/mail:
+ *   post:
+ *     summary: Envia un mensaje por correo electronico al contacto.
+ *     tags: [Contacto]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *       application/json:
+ *         schema:
+ *           example: {user: "Jesus Navarrete", asunto: "Experimento", contenido: "Este es un mensaje de prueba asi es", email: "spoonme.73@gmail.com" }
+ *     responses:
+ *       200:
+ *         description: Esta URL devuelve un mensaje indicando si el correo se envio correctamente o no.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               example: {message: "Mensaje enviado"}
  * /api/contactos/user/{id}:
  *   get:
  *     summary: Devuelve una lista de todos los Contactos del Usuario
@@ -159,6 +175,8 @@ router.route('/user/:id')
     .get(getContactos)
 router.route('/')
     .post(createContacto)
+router.route('/mail')
+    .post(sendMessage)
 router.route('/:id')
     .get(getContacto)
     .put(updateContacto)

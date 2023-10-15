@@ -11,7 +11,7 @@ export default class CreateContact extends Component {
         contacto: {
             nombre: '',
             apellidos: '', 
-            telefono: '',
+            email: '',
             categoria:''
         },
         user_id: localStorage.getItem("user_id"),
@@ -28,7 +28,7 @@ export default class CreateContact extends Component {
                 contacto: {
                     nombre: contacto.nombre,
                     apellidos: contacto.apellidos,
-                    telefono: contacto.telefono,
+                    email: contacto.email,
                     categoria: contacto.categoria
                 },
             })
@@ -50,20 +50,16 @@ export default class CreateContact extends Component {
         const newContacto ={
             nombre: this.state.contacto.nombre,
             apellidos: this.state.contacto.apellidos,
-            telefono: this.state.contacto.telefono,
+            email: this.state.contacto.email,
             categoria: this.state.contacto.categoria
         }
         if(contacto){
             // esta editando
-            console.log(process.env.REACT_APP_HOSTNAME+"/contactos/"+contacto._id, newContacto)
-            const res = await axios.put(process.env.REACT_APP_HOSTNAME+"/contactos/"+contacto._id, newContacto)
-            console.log(res)
+            await axios.put(process.env.REACT_APP_HOSTNAME+"/contactos/"+contacto._id, newContacto)
         }else{
             // esta guardando
             newContacto.idUsuario = this.state.user_id
-            console.log(process.env.REACT_APP_HOSTNAME+"/contactos",newContacto)
-            const res = await axios.post(process.env.REACT_APP_HOSTNAME+"/contactos",newContacto)
-            console.log(res)
+            await axios.post(process.env.REACT_APP_HOSTNAME+"/contactos",newContacto)
         }
         window.location.reload();
     }
@@ -94,9 +90,9 @@ export default class CreateContact extends Component {
                             />
                         </div>
                         <div className="form-group mb-2">
-                            <label className="mb-2">Telefono</label>
-                            <input type="text" className="form-control" placeholder="+526221018849" required name="telefono"
-                                onChange={this.onInputChange} value={this.state.contacto.telefono}
+                            <label className="mb-2">Email</label>
+                            <input type="email" className="form-control" placeholder="jesus@gmail.com" required name="email"
+                                onChange={this.onInputChange} value={this.state.contacto.email}
                             />
                         </div>
                         <div className="form-group mb-2">
