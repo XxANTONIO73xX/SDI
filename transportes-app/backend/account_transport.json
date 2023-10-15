@@ -3,8 +3,8 @@
     "auth": {
         "type": "OAuth2",
         "user":"jnavarrete@cicese.edu.mx",
-        "clientId": "829795951084-9qebrg1t3ee07oagv9v1ua4va8e95pnc.apps.googleusercontent.com",
-        "clientSecret": "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",
-        "refreshToken":"1//04--OrKHlYl2wCgYIARAAGAQSNwF-L9Ir53eETDcXDaPjJO-gR4AIJVS_q9s83h70q8m1oYyYkWXGVrrIqmnHe77MdTrktToSCbw"
+        "clientId": "",
+        "clientSecret": "",
+        "refreshToken":""
     }
 }
